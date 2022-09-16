@@ -1,0 +1,25 @@
+[ {
+        "title": "Pizza Peperoni",
+        "price": "2900",
+        "thumbnail": "https://res.cloudinary.com/deqsgq7p0/image/upload/v1662471019/Back-app/pizza_peperoni_wxgfpt.jpg",
+        "id": 1
+    },
+    {
+        "title": "Pizza Vegeta",
+        "price": "2700",
+        "thumbnail": "https://res.cloudinary.com/deqsgq7p0/image/upload/v1662471016/Back-app/pizza_vegeta_tobrjj.jpg",
+        "id": 2
+    },
+    {
+        "title": "Pizza Meat",
+        "price": "2950",
+        "thumbnail": "https://res.cloudinary.com/deqsgq7p0/image/upload/v1662471016/Back-app/pizza_de_carne_dlfv47.jpg",
+        "id": 3
+    },
+    {
+        "title": "Pizza Margarita",
+        "price": "2500",
+        "thumbnail": "https://res.cloudinary.com/deqsgq7p0/image/upload/v1662475724/Back-app/pizza_margarita_ulhicm.jpg",
+        "id": 5
+    }
+]
