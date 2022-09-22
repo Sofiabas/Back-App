@@ -1,63 +1,53 @@
-const fs = require('fs');
-
-class Container {
-  constructor(filePath) {
-    this.filePath = filePath;
-    this.#readFile();
+class Products {
+  constructor() {
+    this.items = [];
   }
 
-  async #readFile() {
+  get getProductos() {
+    if (this.items.length === 0) return { Mensaje: 'No hay productos en la base de datos.' };
+    return this.items;
+  }
+
+  add(product) {
     try {
-      const content = await fs.promises.readFile(this.filePath, 'utf-8');
-      const parseContent = JSON.parse(content);
-      return parseContent;
+      const newItem = { id: this.items.length ? this.items[this.items.length - 1].id + 1 : 1, ...product };
+      this.items.push(newItem);
+      return newItem;
     } catch (error) {
-      console.log(error);
+      throw new Error(error);
     }
   }
 
-  async save(obj) {
-    const fileContent = await this.#readFile();
-    if (fileContent.length !== 0) {
-      await fs.promises.writeFile(this.filePath, JSON.stringify([...fileContent, {...obj, id: fileContent[fileContent.length - 1].id + 1}], null, 2 ), 'utf-8');
-    } else { 
-      await fs.promises.writeFile(this.filePath, JSON.stringify([{ ...obj, id: 1 }]), 'utf-8');
-    }
+  getProductByID(id) {
+    this.getProductos;
+    const item = this.items.find((product) => product.id === Number(id)) || { error: 'Producto no encontrado' };
+    return item;
   }
 
-  async getById(id) {
+  delete(id) {
+    this.getProductos;
+    const item = this.items.find((product) => product.id === Number(id)) || { error: 'Producto no encontrado' };
+    this.items = this.items.filter((item) => item.id !== Number(id));
+    return item;
+  }
+
+  update(product, id) {
+    this.getProductos;
     try {
-      const fileContent = await this.#readFile();
-      const product = fileContent.find((objeto) => objeto.id === id);
-      return product;
+      const { title, price, thumbnail } = product;
+      const item = this.items.find((prod) => prod.id === Number(id));
+      if (item) {
+        item.title = title;
+        item.price = price;
+        item.thumbnail = thumbnail;
+        return item;
+      } else {
+        return { error: 'Producto no encontrado' };
+      }
     } catch (error) {
-      throw new Error(error, 'Error to get the product by id');
+      throw new Error(error);
     }
-  }
-
-  async getAll() {
-    try {
-      const fileContent = await this.#readFile();
-      return fileContent;
-    } catch (error) {
-      throw new Error(error, 'Error to get all products');
-    }
-  }
-
-  async deleteById(id) {
-    try {
-      const fileContent = await this.#readFile();
-      const productId = fileContent.findIndex((product) => product.id === parseInt(id))
-      if (productId === -1) return { error: 'product not found' };
-      fileContent.splice(productId, 1)
-      await fs.promises.writeFile(this.filePath, JSON.stringify(fileContent, null, 2))
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async deleteAll() {
-    await fs.promises.writeFile(this.filePath, JSON.stringify([]), 'utf-8');
   }
 }
-module.exports = Container;
+
+module.exports = new Products();

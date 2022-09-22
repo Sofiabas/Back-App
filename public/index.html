@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Inicio</title>
+</head>
+<body>
+    <div class="mb-3">
+        <h1 class="text-center"> Ingrese un Produto </h1>
+        <form action="/api/products" method="POST" class="form">
+        <label for="exampleFormControlInput1" class="form-label">Producto</label>
+        <input type="text" name="title" class="form-control" id="" placeholder="Producto">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Precio</label>
+        <input type="number" name="price" class="form-control" id="" placeholder="Precio">  
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"> Miniatura</label>
+        <input type="text" name="thumbnail" placeholder="Miniatura" class='input'/>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary mt-3 mb-1 mx-1">Enviar</button>
+    </div>
+</form>
+</body>
+</html>
